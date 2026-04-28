@@ -84,13 +84,11 @@ function roundOutput() {
     }
 }
 
-roundOutput();
-
-/*
 /// Game logic
 
-Create function playGame
-    While currentRound < 5
-    Run playRound 
-    Add one to currentRound     */
-
+function playGame() {
+    while (currentRound < 5) {
+    roundOutput();
+    currentRound++; 
+    }
+}
