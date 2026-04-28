@@ -1,4 +1,5 @@
 /// Variables
+let computerChoice = "";
 let humanChoice = "";
 let humanScore = 0;
 let computerScore= 0;
@@ -19,46 +20,73 @@ function getRandomNumber(){
 function getComputerChoice() {
     let randomNumber = getRandomNumber();
 
-    if (randomNumber === 0) { f
-    return "rock";
+    if (randomNumber === 0) {
+    computerChoice = "rock"; 
+    return computerChoice;
     } else if (randomNumber === 1) {
-    return "paper";
+    computerChoice = "paper";
+    return computerChoice;
     } else if (randomNumber === 2) {
-    return "scissors"   
+    computerChoice = "scissors";
+    return computerChoice;   
 }}
 
 /// Human Choice Logic    
 function getHumanChoice() { 
-    let humanChoice = prompt( `Please input "rock," "paper," or "scissors"` ).toLowerCase();
+    humanChoice = prompt( `Please input "rock," "paper," or "scissors"` ).toLowerCase();
     if ( humanChoice === "rock" || humanChoice === "paper" || humanChoice === "scissors" ) {
     return humanChoice;
     } else { getHumanChoice();
     } 
 } 
 
+/// Rounds logic
+
+function determineWinner(computer, human) {
+
+    if (computer === "rock" && human === "paper" ||
+        computer === "paper" && human === "scissors" ||
+        computer === "scissors" && human == "rock") {
+        return "human"; 
+    } else if (computer === human) {
+        return "tie";
+    } else{ 
+        return "computer"; 
+    }
+}
+
+function playRound(winner) {
+    if (winner === "human") {
+       ++humanScore;
+       return "human"; 
+    } else if (winner === "computer") {
+        ++computerScore;
+        return "computer"; 
+    } else {
+        return "tie";
+    }
+}
+
+function roundOutput() {
+    let winner = playRound(determineWinner(getComputerChoice(), getHumanChoice()));
+    let humanChoiceCapitalized = humanChoice.charAt(0).toUpperCase() + humanChoice.slice(1);
+    let computerChoiceCapitalized = computerChoice.charAt(0).toUpperCase() + computerChoice.slice(1);
+
+    if (winner === "human") {
+        return console.log("You won! " + humanChoiceCapitalized + " beats " + computerChoice + `. `
+            + "Current score is Human " + humanScore + ", Computer " + computerScore + ".")
+    } else if (winner === "computer") {
+        return console.log("You lose! " + computerChoiceCapitalized + " beats " + humanChoice + `. `
+            + "Current score is Human " + humanScore + ", Computer " + computerScore + ".")
+    } else if (winner === "tie") {
+        return console.log("Tie! It's " + humanChoice + " versus " + computerChoice + ". "
+            + "Current score is Human " + humanScore + ", Computer " + computerScore + ".");    
+    }
+}
+
+roundOutput();
+
 /*
-/// Rounds
-
-Create function determineWinner with inputs computer and human
-    If computer and human are identical
-    Return "tie"
-    Else if computer is "rock" and human is "paper" or
-            computer is "paper" and human is "scissors" or
-            computer is "scissors" and human is "rock"
-    Return "human"
-    Else if computer is "rock" and human is "scissors" or
-            computer is "paper" and human is "rock" or
-            computer is "scissors" and human is "rock"
-    Return "computer"
-
-Create function playRound with input winner
-    If winner is "tie" then
-    Break
-    Else if winner is "computer" then
-    Add one to humanScore
-    Else if winner is "human" then
-    Add one to humanScore
-
 /// Game logic
 
 Create function playGame
