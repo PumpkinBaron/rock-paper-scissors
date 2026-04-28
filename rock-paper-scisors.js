@@ -1,6 +1,8 @@
 /// Variables
-let computerChoice = "";
 let humanChoice = "";
+let humanScore = 0;
+let computerScore= 0;
+let currentRound = 0;
 
 /// Computer Choice Logic
 function getRandomNumber(){
@@ -32,19 +34,9 @@ function getHumanChoice() {
     return humanChoice;
     } else { getHumanChoice();
     } 
-}
-
-console.log("The human has chosen " + getHumanChoice() +".");
+} 
 
 /*
-/// Score Initialization
-
-Create variable humanScore as 0
-
-Create variable computerScore as 0
-     
-Create variable currentRound as 0
-
 /// Rounds
 
 Create function determineWinner with inputs computer and human
