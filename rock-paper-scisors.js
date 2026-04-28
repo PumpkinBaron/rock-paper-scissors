@@ -1,3 +1,7 @@
+/// Variables
+let computerChoice = "";
+let humanChoice = "";
+
 /// Computer Choice Logic
 function getRandomNumber(){
     let random = Math.random()
@@ -13,7 +17,7 @@ function getRandomNumber(){
 function getComputerChoice() {
     let randomNumber = getRandomNumber();
 
-    if (randomNumber === 0) { 
+    if (randomNumber === 0) { f
     return "rock";
     } else if (randomNumber === 1) {
     return "paper";
@@ -21,18 +25,18 @@ function getComputerChoice() {
     return "scissors"   
 }}
 
-console.log("The computer has chosen " + getComputerChoice() +".");
-
 /// Human Choice Logic    
+function getHumanChoice() { 
+    let humanChoice = prompt( `Please input "rock," "paper," or "scissors"` ).toLowerCase();
+    if ( humanChoice === "rock" || humanChoice === "paper" || humanChoice === "scissors" ) {
+    return humanChoice;
+    } else { getHumanChoice();
+    } 
+}
 
-/* Create function getHumanChoice
-    Create variable humanChoice
-        Input string using prompt: "Please input "rock," "paper," or "scissors"
-    
-    While humanChoice case insensitively is "rock", "paper", or "scissors" case then
-    return humanChoice
-    else getHumanChoice
+console.log("The human has chosen " + getHumanChoice() +".");
 
+/*
 /// Score Initialization
 
 Create variable humanScore as 0
